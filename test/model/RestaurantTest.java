@@ -12,26 +12,33 @@ class RestaurantTest {
 
 	@BeforeEach
 	void setUp() {
-		restaurant = new Restaurant();
-		restaurant.ajouterTable(2);
-		restaurant.ajouterTable(3);
-		restaurant.ajouterTable(4);
-		restaurant.ajouterTable(5);
-		restaurant.ajouterTable(5);
-		restaurant.ajouterTable(8);
+		restaurant = new Restaurant(6);
+		CalendrierAnnuel calendrier1 = new CalendrierAnnuel();
+		CalendrierAnnuel calendrier2 = new CalendrierAnnuel();
+		CalendrierAnnuel calendrier3 = new CalendrierAnnuel();
+		CalendrierAnnuel calendrier4 = new CalendrierAnnuel();
+		CalendrierAnnuel calendrier5 = new CalendrierAnnuel();
+		CalendrierAnnuel calendrier6 = new CalendrierAnnuel();
+;		restaurant.ajouterTable(calendrier1,2);
+		restaurant.ajouterTable(calendrier2,3);
+		restaurant.ajouterTable(calendrier3,4);
+		restaurant.ajouterTable(calendrier4,5);
+		restaurant.ajouterTable(calendrier5,5);
+		restaurant.ajouterTable(calendrier6,8);
 		formulaire = new FormulaireRestaurant(10, 12, 3, 1);
 	}
 
 	@Test
 	void testDonnerPossibilites() {
+		CalendrierAnnuel calendrier = new CalendrierAnnuel();
 		int[] possibilites = restaurant.donnerPossibilites(formulaire);
 		int[] expected = { 0, 2, 3, 0, 0, 0 };
-		assertArrayEquals(expected, possibilites,"Les tables numeros 2 et 3 devraient pouvoir être choisi");
+		assertArrayEquals(expected, possibilites,"Les tables numeros 2 et 3 devraient pouvoir Ãªtre choisi");
 
 		int[] expected2 = { 0, 2, 3, 0, 0, 0, 7};
-		restaurant.ajouterTable(3);
+		restaurant.ajouterTable(calendrier,3);
 		possibilites = restaurant.donnerPossibilites(formulaire);
-		assertArrayEquals(expected2, possibilites,"Les tables numeros 2, 3 et 7 devraient pouvoir être choisi");
+		assertArrayEquals(expected2, possibilites,"Les tables numeros 2, 3 et 7 devraient pouvoir Ãªtre choisi");
 	}
 
 	@Test
